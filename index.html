@@ -1,0 +1,412 @@
+<html lang="ko" class="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>윤도훈 (Dohoon Yoon) | 백엔드 개발자 포트폴리오</title>
+    <!-- Tailwind CSS 로드 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter 폰트 사용 (Tailwind의 기본 sans-serif 폰트 스택과 잘 어울림) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        // FOUC(Flash of Unstyled Content) 방지를 위해 <head>에서 바로 테마 적용
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+    <style>
+        /* Noto Sans KR 폰트를 기본으로 사용하고, Inter는 영문에 적용되도록 설정 */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+        }
+        /* 헤더 높이만큼 스크롤 오프셋 적용 */
+        :target {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 transition-colors duration-300">
+
+    <!-- ========== 헤더 (Navigation) ========== -->
+    <header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm shadow-sm dark:bg-slate-800/95 dark:shadow-slate-700">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <!-- 로고/이름 -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-indigo-600">
+                        Dohoon Yoon
+                    </a>
+                </div>
+                <!-- 네비게이션 링크 -->
+                <div class="flex items-center">
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="#about" class="rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400 transition-colors duration-200">About Me</a>
+                            <a href="#skills" class="rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400 transition-colors duration-200">Skills</a>
+                            <a href="#projects" class="rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400 transition-colors duration-200">Projects</a>
+                            <a href="#contact" class="rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-indigo-600 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-indigo-400 transition-colors duration-200">Contact</a>
+                        </div>
+                    </div>
+
+                    <!-- 테마 토글 버튼 -->
+                    <button id="theme-toggle" type="button" class="ml-4 flex-shrink-0 rounded-full p-1.5 text-slate-600 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-200">
+                        <span class="sr-only">Toggle theme</span>
+                        <!-- 달 아이콘 (라이트 모드에서 보임) -->
+                        <svg id="theme-toggle-light-icon" class="h-5 w-5 block dark:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 008.25-4.498c.389-.69.728-1.433.992-2.2z" />
+                        </svg>
+                        <!-- 해 아이콘 (다크 모드에서 보임) -->
+                        <svg id="theme-toggle-dark-icon" class="h-5 w-5 hidden dark:block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-6.364-.386l1.591-1.591M3 12H.75m.386-6.364l1.591 1.591" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========== 메인 컨텐츠 ========== -->
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <!-- ========== 1. About Me (Hero) ========== -->
+        <section id="about" class="py-24 sm:py-32">
+            <div class="flex flex-col-reverse items-center gap-12 md:flex-row md:items-start">
+                <!-- 프로필 이미지 (플레이스홀더) -->
+                <div class="flex-shrink-0">
+                    <img class="h-40 w-40 rounded-full object-cover shadow-lg md:h-48 md:w-48"
+                         src="https://placehold.co/200x200/e0e7ff/3730a3?text=DHY"
+                         onerror="this.src='https://placehold.co/200x200/e0e7ff/3730a3?text=DHY'"
+                         alt="윤도훈 프로필 이미지">
+                </div>
+                <!-- 소개 텍스트 -->
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl dark:text-white">
+                        윤도훈 (Dohoon Yoon)
+                    </h1>
+                    <p class="mt-6 text-xl leading-8 text-slate-600 dark:text-slate-400">
+                        “기초를 단단히, 성장 속도는 빠르게 — <br class="hidden sm:inline">오늘도 성장 중인 백엔드 개발자입니다.”
+                    </p>
+                    <!-- 연락처 링크 -->
+                    <div class="mt-10 flex items-center justify-center gap-x-6 md:justify-start">
+                        <a href="mailto:ehgns79513@gmail.com" class="flex items-center gap-2 rounded-md bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors duration-200">
+                            <!-- 이메일 아이콘 SVG -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                                <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                            </svg>
+                            Email
+                        </a>
+                        <a href="https://github.com/hodoon" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-md bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 transition-colors duration-200">
+                            <!-- GitHub 아이콘 SVG -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.635-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 5.348c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.375.201 2.392.098 2.645.64.698 1.03 1.591 1.03 2.682 0 3.842-2.337 4.687-4.566 4.935.359.308.678.92.678 1.85 0 1.338-.012 2.419-.012 2.746 0 .268.18.58.688.482A10.001 10.001 0 0020 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/dohoon-yoon-ab223335a/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-md bg-blue-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 transition-colors duration-200">
+                             <!-- LinkedIn 아이콘 SVG -->
+                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-1.002-.018-2.29-1.394-2.29-1.396 0-1.611 1.09-1.611 2.218v4.25H7.39V7.39h2.56v1.17h.036c.355-.675 1.22-1.394 2.524-1.394 2.7 0 3.198 1.778 3.198 4.091v5.081zM4.668 5.88h.018C5.6 5.88 6.2 5.24 6.2 4.39C6.2 3.53 5.61 2.9 4.69 2.9c-.92 0-1.52.62-1.52 1.48s.6 1.5 1.5 1.5zM3.38 7.39h2.58v8.948H3.38V7.39zM18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2z" clip-rule="evenodd" />
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 2. 기술 스택 (Skills) ========== -->
+        <section id="skills" class="py-24 sm:py-32 bg-white rounded-xl shadow-lg dark:bg-slate-800">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">Skills</h2>
+                    <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">보유하고 있는 기술 스택입니다.</p>
+                </div>
+                <div class="mt-16 space-y-12">
+                    <!-- 백엔드 -->
+                    <div>
+                        <h3 class="text-xl font-semibold leading-7 text-indigo-600 dark:text-indigo-400">Backend</h3>
+                        <div class="mt-6 flex flex-wrap gap-4 justify-center sm:justify-start">
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/springboot/6DB33F" alt="Spring Boot" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Spring Boot</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Python</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/fastapi/009688" alt="FastAPI" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">FastAPI</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">MySQL</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">PostgreSQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 프론트엔드 -->
+                    <div>
+                        <h3 class="text-xl font-semibold leading-7 text-blue-600 dark:text-blue-400">Frontend</h3>
+                        <div class="mt-6 flex flex-wrap gap-4 justify-center sm:justify-start">
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">TypeScript</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">JavaScript</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/react/61DAFB" alt="React" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">React</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">HTML5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DevOps & Tools -->
+                    <div>
+                        <h3 class="text-xl font-semibold leading-7 text-slate-600 dark:text-slate-400">DevOps & Tools</h3>
+                        <div class="mt-6 flex flex-wrap gap-4 justify-center sm:justify-start">
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/git/F05032" alt="Git" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Git</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-2 p-3 rounded-lg w-28 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                                <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker" class="h-10 w-10">
+                                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">Docker</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 3. 프로젝트 (Projects) ========== -->
+        <section id="projects" class="py-24 sm:py-32">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl dark:text-white">Projects</h2>
+                <p class="mt-4 text-lg leading-8 text-slate-600 dark:text-slate-400">지금까지 진행한 주요 프로젝트입니다.</p>
+            </div>
+            
+            <div class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 프로젝트 1: 다솜 홈페이지 -->
+                <article class="flex flex-col items-start justify-between overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-slate-200/5">
+                    <div class="w-full">
+                        <img src="https://placehold.co/600x400/f3f4f6/333?text=DASOM+Web" 
+                             onerror="this.src='https://placehold.co/600x400/f3f4f6/333?text=DASOM+Web'"
+                             alt="다솜 홈페이지 프로젝트 이미지" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900">
+                            전공동아리 다솜 홈페이지 백엔드
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600">
+                            <strong class="font-semibold text-slate-800">역할 및 기여:</strong><br>
+                            Backend(홈페이지 어드민 기능, 모집 기능 DB 설계 및 로직 구현)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">React</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">SpringBoot</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">OracleDB</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Docker</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Nginx</span>
+                            </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900 dark:text-white">
+                            전공동아리 다솜 홈페이지 백엔드
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            <strong class="font-semibold text-slate-800 dark:text-slate-200">역할 및 기여:</strong><br>
+                            Backend(홈페이지 어드민 기능, 모집 기능 DB 설계 및 로직 구현)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">React</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">SpringBoot</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">OracleDB</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Docker</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Nginx</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-slate-200 bg-slate-50 px-6 py-4 dark:border-slate-700 dark:bg-slate-800">
+                        <a href="https://github.com/DASOM-GitHub/dasom-web-backend" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors duration-200">
+                            GitHub Repository &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 프로젝트 2: NunSub -->
+                <article class="flex flex-col items-start justify-between overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-slate-200/5">
+                    <div class="w-full">
+                        <img src="https://placehold.co/600x400/e0e7ff/333?text=NunSub" 
+                             onerror="this.src='https://placehold.co/600x400/e0e7ff/333?text=NunSub'"
+                             alt="NunSub 프로젝트 이미지" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900">
+                            사용자를 위한 맞춤형 금융비서 NunSub
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600">
+                            <strong class="font-semibold text-slate-800">역할 및 기여:</strong><br>
+                            PM, BackEnd(OpenBanking API, 거래내역 추출/카테고리 분류, 정기 결제 내역 추출, Blue-green 무중단 배포)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">ReactNative</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">SpringBoot</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">PostgreSQL</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Docker</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Nginx</span>
+                            </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900 dark:text-white">
+                            사용자를 위한 맞춤형 금융비서 NunSub
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            <strong class="font-semibold text-slate-800 dark:text-slate-200">역할 및 기여:</strong><br>
+                            PM, BackEnd(OpenBanking API, 거래내역 추출/카테고리 분류, 정기 결제 내역 추출, Blue-green 무중단 배포)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">ReactNative</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">SpringBoot</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">PostgreSQL</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Docker</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Nginx</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-slate-200 bg-slate-50 px-6 py-4 dark:border-slate-700 dark:bg-slate-800">
+                        <a href="https://github.com/NunSub/Nunsub_BackEnd" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors duration-200">
+                            GitHub Repository &rarr;
+                        </a>
+                    </div>
+                </article>
+
+                <!-- 프로젝트 3: Eye-T -->
+                <article class="flex flex-col items-start justify-between overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800 dark:ring-slate-200/5">
+                    <div class="w-full">
+                        <img src="https://placehold.co/600x400/dbeafe/333?text=Eye-T" 
+                             onerror="this.src='https://placehold.co/600x400/dbeafe/333?text=Eye-T'"
+                             alt="Eye-T 프로젝트 이미지" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900">
+                            AI 기반 사시 유형 판별 및 교정 훈련 서비스 Eye-T
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600">
+                            <strong class="font-semibold text-slate-800">역할 및 기여:</strong><br>
+                            Backend(YOLOv5 사시 판별 모델, RoboFlow 데이터 증강, MediaPipe 시선추적), FrontEnd(Phaser 3 게임 개발)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Python</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">YOLOv5</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">MediaPipe</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">Phaser 3</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">RoboFlow</span>
+                            </div>
+                    <div class="flex-1 p-6">
+                        <h3 class="text-xl font-semibold leading-6 text-slate-900 dark:text-white">
+                            AI 기반 사시 유형 판별 및 교정 훈련 서비스 Eye-T
+                        </h3>
+                        <p class="mt-4 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            <strong class="font-semibold text-slate-800 dark:text-slate-200">역할 및 기여:</strong><br>
+                            Backend(YOLOv5 사시 판별 모델, RoboFlow 데이터 증강, MediaPipe 시선추적), FrontEnd(Phaser 3 게임 개발)
+                        </p>
+                        <div class="mt-4">
+                            <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">기술 스택:</p>
+                            <div class="mt-2 flex flex-wrap gap-2">
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Python</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">YOLOv5</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">MediaPipe</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">Phaser 3</span>
+                                <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700 dark:text-slate-300">RoboFlow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full border-t border-slate-200 bg-slate-50 px-6 py-4 dark:border-slate-700 dark:bg-slate-800">
+                        <a href="https://github.com/hodoon/EyeT" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors duration-200">
+                            GitHub Repository &rarr;
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== 4. 푸터 (Contact) ========== -->
+    <footer id="contact" class="bg-slate-900 text-slate-300 dark:text-slate-400">
+        <div class="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+            <div class="flex items-center justify-center space-x-6">
+                <a href="mailto:ehgns79513@gmail.com" class="hover:text-white dark:hover:text-white transition-colors duration-200">
+                    <span class="sr-only">Email</span>
+                    <!-- 이메일 아이콘 -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+                        <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+                    </svg>
+                </a>
+                <a href="https://github.com/hodoon" target="_blank" rel="noopener noreferrer" class="hover:text-white dark:hover:text-white transition-colors duration-200">
+                    <span class="sr-only">GitHub</span>
+                    <!-- GitHub 아이콘 -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.602-3.369-1.34-3.369-1.34-.454-1.157-1.11-1.465-1.11-1.465-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.635-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.03-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 5.348c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.375.201 2.392.098 2.645.64.698 1.03 1.591 1.03 2.682 0 3.842-2.337 4.687-4.566 4.935.359.308.678.92.678 1.85 0 1.338-.012 2.419-.012 2.746 0 .268.18.58.688.482A10.001 10.001 0 0020 10c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/dohoon-yoon-ab223335a/" target="_blank" rel="noopener noreferrer" class="hover:text-white dark:hover:text-white transition-colors duration-200">
+                    <span class="sr-only">LinkedIn</span>
+                    <!-- LinkedIn 아이콘 -->
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                         <path fill-rule="evenodd" d="M16.338 16.338H13.67V12.16c0-1.002-.018-2.29-1.394-2.29-1.396 0-1.611 1.09-1.611 2.218v4.25H7.39V7.39h2.56v1.17h.036c.355-.675 1.22-1.394 2.524-1.394 2.7 0 3.198 1.778 3.198 4.091v5.081zM4.668 5.88h.018C5.6 5.88 6.2 5.24 6.2 4.39C6.2 3.53 5.61 2.9 4.69 2.9c-.92 0-1.52.62-1.52 1.48s.6 1.5 1.5 1.5zM3.38 7.39h2.58v8.948H3.38V7.39zM18 0H2C.9 0 0 .9 0 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2c0-1.1-.9-2-2-2z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+            <p class="mt-8 text-center text-xs leading-5">
+                &copy; 2024 Dohoon Yoon. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- 테마 토글 로직 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            themeToggleBtn.addEventListener('click', () => {
+                // 'dark' 클래스가 있는지 확인
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
