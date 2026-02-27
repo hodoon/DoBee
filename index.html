@@ -102,6 +102,7 @@
                         <a href="#projects"   class="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Projects</a>
                         <a href="#activities" class="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Activities</a>
                         <a href="#awards"     class="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Awards</a>
+                        <a href="#education"  class="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Education</a>
                         <a href="#contact"    class="px-3 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Contact</a>
                     </div>
                     <button id="theme-toggle" type="button" class="ml-2 flex-shrink-0 rounded-xl p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none">
@@ -132,6 +133,7 @@
                 <a href="#projects"   onclick="closeMobileMenu()" class="px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Projects</a>
                 <a href="#activities" onclick="closeMobileMenu()" class="px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Activities</a>
                 <a href="#awards"     onclick="closeMobileMenu()" class="px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Awards</a>
+                <a href="#education"  onclick="closeMobileMenu()" class="px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Education</a>
                 <a href="#contact"    onclick="closeMobileMenu()" class="px-3 py-2.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Contact</a>
             </div>
         </div>
@@ -236,6 +238,10 @@
                             <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL" class="h-9 w-9">
                             <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">PostgreSQL</span>
                         </div>
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.simpleicons.org/redis/FF4438" alt="Redis" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Redis</span>
+                        </div>
                     </div>
                 </div>
 
@@ -262,6 +268,33 @@
                         <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
                             <img src="https://cdn.simpleicons.org/notion/000000" alt="Notion" class="h-9 w-9 dark:invert">
                             <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Notion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Infra / Cloud -->
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 shadow-sm">
+                    <h3 class="text-sm font-bold tracking-widest text-orange-500 uppercase mb-6">Infra / Cloud</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">AWS</span>
+                        </div>
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.simpleicons.org/googlecloud/4285F4" alt="GCP" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">GCP</span>
+                        </div>
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.simpleicons.org/naver/03C75A" alt="Naver Cloud" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Naver Cloud</span>
+                        </div>
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.simpleicons.org/nginx/009639" alt="Nginx" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Nginx</span>
+                        </div>
+                        <div class="skill-card flex flex-col items-center gap-2 px-5 py-4 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 w-28">
+                            <img src="https://cdn.simpleicons.org/githubactions/2088FF" alt="GitHub Actions" class="h-9 w-9">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">GitHub Actions</span>
                         </div>
                     </div>
                 </div>
@@ -344,7 +377,7 @@
 
                 <!-- 프로젝트 3: VALUEDI -->
                 <article class="project-card flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl dark:hover:shadow-slate-900">
-                    <img src="./docs/images/valuedi.png"
+                    <img src="./valuedi.png"
                          onerror="this.src='https://placehold.co/600x400/6366f1/ffffff?text=VALUEDI'"
                          alt="VALUEDI" class="w-full h-48 object-cover">
                     <div class="flex-1 p-6">
@@ -512,9 +545,54 @@
             </div>
         </section>
 
+        <!-- ===== 6. Education ===== -->
+        <section id="education" class="py-16 md:py-24 fade-in">
+            <div class="mb-14 text-center">
+                <p class="text-sm font-semibold tracking-widest text-indigo-500 dark:text-indigo-400 uppercase mb-2">Academic Background</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white">Education</h2>
+            </div>
+
+            <div class="max-w-2xl mx-auto space-y-4">
+                <!-- 전문학사 -->
+                <div class="flex items-start gap-6 p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex-shrink-0 h-14 w-14 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center">
+                        <svg class="h-7 w-7 text-indigo-600 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.172-.311a54.614 54.614 0 014.653-2.52.75.75 0 00-.65-1.352 56.129 56.129 0 00-4.78 2.589 1.858 1.858 0 00-.859 1.228 49.803 49.803 0 00-4.634-1.527.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z"/>
+                            <path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 00-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.661a6.729 6.729 0 00.551-1.608 1.5 1.5 0 00.14-2.67v-.645a48.549 48.549 0 013.44 1.668 2.25 2.25 0 002.12 0z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">동양미래대학교</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 w-fit">졸업</span>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-600 dark:text-slate-300">컴퓨터공학부 컴퓨터소프트웨어공학과 · 전문학사</p>
+                        <p class="mt-2 text-xs text-slate-400">2020.03 — 2026.02</p>
+                    </div>
+                </div>
+                <!-- 학사 -->
+                <div class="flex items-start gap-6 p-6 md:p-8 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex-shrink-0 h-14 w-14 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center">
+                        <svg class="h-7 w-7 text-indigo-600 dark:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.7 2.805a.75.75 0 01.6 0A60.65 60.65 0 0122.83 8.72a.75.75 0 01-.231 1.337 49.949 49.949 0 00-9.902 3.912l-.003.002-.34.18a.75.75 0 01-.707 0A50.009 50.009 0 007.5 12.174v-.224c0-.131.067-.248.172-.311a54.614 54.614 0 014.653-2.52.75.75 0 00-.65-1.352 56.129 56.129 0 00-4.78 2.589 1.858 1.858 0 00-.859 1.228 49.803 49.803 0 00-4.634-1.527.75.75 0 01-.231-1.337A60.653 60.653 0 0111.7 2.805z"/>
+                            <path d="M13.06 15.473a48.45 48.45 0 017.666-3.282c.134 1.414.22 2.843.255 4.285a.75.75 0 01-.46.71 47.878 47.878 0 00-8.105 4.342.75.75 0 01-.832 0 47.877 47.877 0 00-8.104-4.342.75.75 0 01-.461-.71c.035-1.442.121-2.87.255-4.286A48.4 48.4 0 016 13.18v1.27a1.5 1.5 0 00-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.661a6.729 6.729 0 00.551-1.608 1.5 1.5 0 00.14-2.67v-.645a48.549 48.549 0 013.44 1.668 2.25 2.25 0 002.12 0z"/>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                            <h3 class="text-lg font-bold text-slate-900 dark:text-white">동양미래대학교</h3>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-400 w-fit">재학중</span>
+                        </div>
+                        <p class="text-sm font-semibold text-slate-600 dark:text-slate-300">컴퓨터공학부 컴퓨터소프트웨어공학과 · 학사</p>
+                        <p class="mt-2 text-xs text-slate-400">2026.03 — 현재</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <!-- ===== 6. Contact / Footer ===== -->
+    <!-- ===== 7. Contact / Footer ===== -->
     <footer id="contact" class="mt-12 bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
         <div class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
             <div class="text-center mb-10">
