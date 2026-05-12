@@ -273,3 +273,13 @@ http://버킷이름.s3-website-us-east-1.amazonaws.com
 ```
 http://mybucket-20263587.s3-website-us-east-1.amazonaws.com
 ```
+
+---
+
+# 3. 과제 영상
+
+### 🎬 GitHub Actions 활용 CI/CD 구축 시연 영상
+[![GitHub Actions CI/CD](https://img.shields.io/badge/YouTube-CI%2FCD%20구축%20시연-FF0000?style=for-the-badge&logo=youtube)](https://youtube.com/watch?v=qo0MpvLMvkk&feature=youtu.be)
+
+### 🎬 AWS Amplify 서비스 활용 호스팅 영상
+[![AWS Amplify 호스팅](https://img.shields.io/badge/YouTube-AWS%20Amplify%20호스팅-FF0000?style=for-the-badge&logo=youtube)](https://youtube.com/watch?v=MWcLbZz260c&feature=youtu.be)
