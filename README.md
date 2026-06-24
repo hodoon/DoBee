@@ -1,5 +1,7 @@
-# ReactPage_to_AWS_S3
-React Portfolio Homepage → AWS S3 (GitHub Actions CI/CD)
+# DoBee Portfolio
+React Portfolio Homepage → GitHub Pages (GitHub Actions CI/CD)
+
+🔗 **배포 주소:** https://hodoon.github.io/DoBee/
 
 ---
 
@@ -157,50 +159,33 @@ npm run preview
 
 ---
 
-# 2. GitHub Actions를 활용하여 AWS S3에 배포하기
+# 2. GitHub Actions를 활용하여 GitHub Pages에 배포하기
 
-### 1단계: AWS S3 버킷 설정
+### 1단계: 서브경로 base 설정 (`vite.config.js`)
 
-**S3 버킷을 생성하고 정적 웹사이트 호스팅을 활성화합니다.**
+GitHub Pages 프로젝트 페이지는 `https://<유저>.github.io/<레포>/` 형태의 **서브경로**로 서빙됩니다.
+따라서 Vite `base`를 레포 이름으로 맞춰야 에셋 경로가 깨지지 않습니다.
 
-1. **버킷 생성** (예: `dobee-portfolio`)
-2. **권한 → 퍼블릭 액세스 차단:** 모든 차단 **해제**
-3. **속성 → 정적 웹 호스팅:** 활성화
-   - Index document: `index.html`
-   - Error document: `index.html` (SPA 라우팅 대응)
-4. **권한 → 버킷 정책:** 아래 정책 붙여넣기
+```js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "PublicReadGetObject",
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::내-버킷-이름/*"
-    }
-  ]
-}
+export default defineConfig({
+  base: '/DoBee/',
+  plugins: [react()],
+})
 ```
+
+> `public/` 정적 이미지를 JS에서 문자열 경로로 참조할 때는 `import.meta.env.BASE_URL`을 접두로 붙여야 합니다.
+> 예) `src={`${import.meta.env.BASE_URL}profile.jpg`}`
 
 ---
 
-### 2단계: GitHub Secrets 등록 (Academy 토큰 포함 5개)
+### 2단계: 저장소 Pages 설정
 
-**Settings → Secrets and variables → Actions → New repository secret**
+**Settings → Pages → Build and deployment → Source → "GitHub Actions" 선택**
 
-| Secret 이름 | 값 |
-|---|---|
-| `AWS_ACCESS_KEY_ID` | Academy 랩 콘솔 → AWS Details → Access Key ID |
-| `AWS_SECRET_ACCESS_KEY` | Academy 랩 콘솔 → Secret Access Key |
-| `AWS_SESSION_TOKEN` | Academy 랩 콘솔 → Session Token (필수!) |
-| `AWS_REGION` | `us-east-1` |
-| `S3_BUCKET_NAME` | 생성한 버킷 이름 (예: `dobee-portfolio`) |
-
-> **⚠️ Academy 주의사항:** 랩 세션이 만료되면 임시 자격증명도 만료됩니다.  
-> 세션 재시작 후 `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN` 3개를 새 값으로 업데이트해야 배포가 동작합니다.
+별도의 시크릿(AWS 키 등)은 필요 없습니다. GitHub Actions가 OIDC로 Pages에 직접 배포합니다.
 
 ---
 
@@ -209,16 +194,25 @@ npm run preview
 **경로:** `.github/workflows/deploy.yml`
 
 ```yaml
-name: Deploy to S3
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -234,27 +228,22 @@ jobs:
 
       - name: Build
         run: npm run build
-        # 빌드 결과물은 ./dist 폴더에 생성됩니다.
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          path: dist
 
-      - name: Deploy to S3
-        run: |
-          # JS/CSS 등 해시가 포함된 파일은 장기 캐시 적용
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} \
-            --delete \
-            --cache-control "max-age=31536000,public,immutable" \
-            --exclude "index.html"
-
-          # index.html은 항상 최신 버전을 받도록 캐시 비활성화
-          aws s3 cp dist/index.html s3://${{ secrets.S3_BUCKET_NAME }}/index.html \
-            --cache-control "no-cache,no-store,must-revalidate"
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
 ```
 
 ---
@@ -262,16 +251,11 @@ jobs:
 ### 4단계: 배포 및 접속 확인
 
 1. 코드를 `main` 브랜치에 `push`합니다.
-2. GitHub **Actions** 탭에서 워크플로우가 성공하는지 확인합니다.
-3. S3 버킷 **정적 웹사이트 호스팅 엔드포인트**로 접속합니다.
+2. GitHub **Actions** 탭에서 "Deploy to GitHub Pages" 워크플로우가 성공하는지 확인합니다.
+3. 배포 주소로 접속합니다.
 
 ```
-http://버킷이름.s3-website-us-east-1.amazonaws.com
-```
-
-예시:
-```
-http://mybucket-20263587.s3-website-us-east-1.amazonaws.com
+https://hodoon.github.io/DoBee/
 ```
 
 ---
