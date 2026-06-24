@@ -26,7 +26,7 @@ function ProjectCard({ project }) {
     <article className="flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl dark:hover:shadow-slate-900 transition-all duration-300 hover:-translate-y-1.5">
       <div className="relative overflow-hidden">
         <img
-          src={project.image}
+          src={`${import.meta.env.BASE_URL}${project.image.replace(/^\//, '')}`}
           onError={e => { e.currentTarget.src = `https://placehold.co/600x400/${project.fallbackColor}/ffffff?text=${project.fallbackText}`; }}
           alt={project.title}
           className="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"

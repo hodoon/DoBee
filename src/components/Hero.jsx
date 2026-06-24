@@ -68,7 +68,7 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-indigo-400 to-cyan-400 blur-2xl opacity-30 scale-110 animate-pulse" />
               <img
                 className="relative h-44 w-44 rounded-full object-cover ring-4 ring-white dark:ring-slate-800 shadow-2xl md:h-56 md:w-56"
-                src="/profile.jpg"
+                src={`${import.meta.env.BASE_URL}profile.jpg`}
                 alt="윤도훈 프로필 이미지"
               />
             </div>
